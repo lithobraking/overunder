@@ -1,4 +1,5 @@
 import { Accordion, Card, Stack } from "react-bootstrap"
+import IncomeList from "./income/IncomeList";
 
 const Cashflow = () => {
     return (
@@ -6,13 +7,7 @@ const Cashflow = () => {
             <Accordion.Item eventKey={"0"}>
                 <Accordion.Header>Income</Accordion.Header>
                 <Accordion.Body>
-                    <Stack direction="horizontal" gap="4">
-                        <p className="ms-auto">Income Name</p>
-                        <div className="vr ms-auto" />
-                        <p className="ms-auto">Amount</p>
-                        <div className="vr ms-auto" />
-                        <p className="ms-auto">Frequency</p>
-                    </Stack>
+                    <IncomeList />
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey={"1"}>
