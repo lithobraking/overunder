@@ -1,11 +1,11 @@
 import IncomeItem from "./IncomeItem";
 import incomeData from "../../mock-data/mock-income";
-import { CloseButton, Stack } from "react-bootstrap";
+import { Button, CloseButton, Stack } from "react-bootstrap";
 
 const IncomeList = () => {
     const income = incomeData.income;
     return (
-        <>
+        <div className="text-center">
             {
                 income.length > 0 ?
                     income.map((income) => {
@@ -20,7 +20,8 @@ const IncomeList = () => {
                     }) :
                     "No income to display."
             }
-        </>
+            <Button variant="outline-primary">Add New</Button>
+        </div>
     );
 };
 
