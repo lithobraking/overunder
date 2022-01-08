@@ -10,12 +10,12 @@ const IncomeList = () => {
                 income.length > 0 ?
                     income.map((income) => {
                         return (
-                            <IncomeItem 
-                            key={income.id}
-                            name={income.name}
-                            amount={income.amount}
-                            frequency={income.frequency}
-                             />
+                            <IncomeItem
+                                key={income.id}
+                                name={income.name}
+                                amount={income.amount}
+                                frequency={income.frequency}
+                            />
                         )
                     }) :
                     "No income to display."
