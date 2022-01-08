@@ -1,15 +1,18 @@
-import { CloseButton, Col, Row } from "react-bootstrap";
+import { Card, CloseButton, Col, Row } from "react-bootstrap";
 
 const IncomeItem = ({ name, amount, frequency }) => {
     return (
-        <>
-            <Row className="align-items-center" >
-                <Col>{name}</Col>
-                <Col >${amount}</Col>
-                <Col >{frequency}</Col>
-                <CloseButton />
-            </Row>
-        </>
+        <Card className="d-flex flex-row justify-content-around p-3 mb-2">
+            <div className="w-100">
+                {name}
+            </div>
+            <div className="w-100">
+                {amount}
+            </div>
+            <div className="w-100">
+                {frequency}
+            </div>
+        </Card>
     );
 };
 

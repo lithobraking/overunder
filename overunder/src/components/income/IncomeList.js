@@ -1,5 +1,6 @@
 import IncomeItem from "./IncomeItem";
 import incomeData from "../../mock-data/mock-income";
+import { CloseButton, Stack } from "react-bootstrap";
 
 const IncomeList = () => {
     const income = incomeData.income;
@@ -7,14 +8,14 @@ const IncomeList = () => {
         <>
             {
                 income.length > 0 ?
-                    income.map((item) => {
+                    income.map((income) => {
                         return (
-                            <IncomeItem
-                                key={item.id}
-                                name={item.name}
-                                amount={item.amount}
-                                frequency={item.frequency}
-                            />
+                            <IncomeItem 
+                            key={income.id}
+                            name={income.name}
+                            amount={income.amount}
+                            frequency={income.frequency}
+                             />
                         )
                     }) :
                     "No income to display."

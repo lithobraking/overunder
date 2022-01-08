@@ -1,25 +1,36 @@
-import { Accordion, Card, Stack } from "react-bootstrap"
+import { Accordion, Card, Container, Stack, Table } from "react-bootstrap"
 import IncomeList from "./income/IncomeList";
 
 const Cashflow = () => {
     return (
-        <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey={"0"}>
-                <Accordion.Header>Income</Accordion.Header>
-                <Accordion.Body>
+        <>
+            <h2><b>Income</b></h2>
+            <Card className="mb-3 p-2">
+                <Container>
+                    <div className="d-flex flex-row justify-content-around">
+                        <div><h5><b>Name</b></h5></div>
+                        <div><h5><b>Amount</b></h5></div>
+                        <div><h5><b>Frequency</b></h5></div>
+                    </div>
                     <IncomeList />
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey={"1"}>
-                <Accordion.Header>Expenses</Accordion.Header>
-                <Accordion.Body>
-                    <p>Expense Name</p>
-                    <p>Amount</p>
-                    <p>Frequency</p>
-                </Accordion.Body>
-            </Accordion.Item>
-        </Accordion>
+                </Container>
+            </Card>
+            <Card className="mb-3 p-2">
+                <Container>
+                    <Card.Title><h3><b>Expenses</b></h3></Card.Title>
+                    <Table borderless hover>
+                        <thead>
+                            <th>Expense</th>
+                            <th>Cost</th>
+                            <th>Frequency</th>
+                        </thead>
+                        <tbody>
 
+                        </tbody>
+                    </Table>
+                </Container>
+            </Card>
+        </>
     );
 };
 

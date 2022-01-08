@@ -11,6 +11,12 @@ const incomeData = {
             "name": "test2",
             "amount": 3000,
             "frequency": "monthly"
+        },
+        {
+            "id": 2,
+            "name": "test10",
+            "amount": 2100,
+            "frequency": "monthly"
         }
     ]
 }
