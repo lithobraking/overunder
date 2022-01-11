@@ -1,10 +1,14 @@
 import IncomeItem from "./IncomeItem";
 import incomeData from "../../mock-data/mock-income";
-import { Button, CloseButton, Stack } from "react-bootstrap";
+import { Button, CloseButton, Collapse, Stack } from "react-bootstrap";
 import NewIncomeForm from "./NewIncomeForm";
+import { useState } from "react";
 
 const IncomeList = () => {
     const income = incomeData.income;
+
+    const [open, setOpen] = useState(false);
+
     return (
         <>
             <div className="text-center">
@@ -22,9 +26,13 @@ const IncomeList = () => {
                         }) :
                         "No income to display."
                 }
-                <Button variant="outline-primary">Add New</Button>
+                <Button variant="outline-primary" onClick={() => setOpen(!open)}>Add New</Button>
             </div>
-            <NewIncomeForm />
+            <Collapse in={open}>
+                <div>
+                    <NewIncomeForm />
+                </div>
+            </Collapse>
         </>
     );
 };
