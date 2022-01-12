@@ -1,27 +1,46 @@
+import { useState } from "react";
 import { Button, Row, Col, Form, FormGroup } from "react-bootstrap";
 
 
-const NewIncomeForm = () => {
+const NewIncomeForm = ({open, setOpen}) => {
+    const [name, setName] = useState('');
+    const [amount, setAmount] = useState(0);
+    const [frequency, setFrequency] = useState('daily');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const income = {
+            name: name,
+            amount: amount,
+            frequency: frequency
+        };
+
+        setOpen(!open);
+        alert(JSON.stringify(income));
+
+
+    };
     return (
         <>
-            <Form className="mt-2">
+            <Form className="mt-2" onSubmit={handleSubmit}>
                 <Row>
                     <Col>
                         <FormGroup controlId="formIncomeName">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control />
+                            <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
                         </FormGroup>
                     </Col>
                     <Col>
                         <FormGroup controlId="formIncomeAmount">
                             <Form.Label>Amount</Form.Label>
-                            <Form.Control />
+                            <Form.Control type="text" onChange={(e) => setAmount(e.target.value)} />
                         </FormGroup>
                     </Col>
                     <Col>
                         <FormGroup controlId="formIncomeFrequency">
                             <Form.Label>Frequency</Form.Label>
-                            <Form.Select aria-label="select occurrence frequency">
+                            <Form.Select aria-label="select occurrence frequency"
+                                onChange={(e) => setFrequency(e.target.value)} >
                                 <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>
                                 <option value="biweekly">Bi-weekly</option>
@@ -33,7 +52,7 @@ const NewIncomeForm = () => {
                     </Col>
                 </Row>
                 <div className="w-auto text-center mt-2">
-                <Button variant="primary" type="submit">Add</Button>
+                    <Button variant="primary" type="submit">Add</Button>
                 </div>
             </Form>
         </>

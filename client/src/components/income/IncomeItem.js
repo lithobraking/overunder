@@ -1,4 +1,4 @@
-import { Card, CloseButton, Col, Row } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const IncomeItem = ({ name, amount, frequency }) => {
     return (

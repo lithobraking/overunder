@@ -30,7 +30,7 @@ const IncomeList = () => {
             </div>
             <Collapse in={open}>
                 <div>
-                    <NewIncomeForm />
+                    <NewIncomeForm open={open} setOpen={setOpen} />
                 </div>
             </Collapse>
         </>
