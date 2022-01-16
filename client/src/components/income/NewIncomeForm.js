@@ -16,10 +16,18 @@ const NewIncomeForm = ({open, setOpen}) => {
         };
 
         setOpen(!open);
-        alert(JSON.stringify(income));
-
-
+        if (localStorage.getItem('incomeSources')) {
+            const sources = JSON.parse(window.localStorage.getItem('incomeSources'));
+            sources.push(income);
+            window.localStorage.setItem('incomeSources', JSON.stringify(sources));
+            console.log("income updated successfully: " + window.localstorage.getItem('incomeSources'));
+        } else {
+            const source = [income];
+            window.localStorage.setItem('incomeSources', JSON.stringify(source));
+            console.log("added new income successfully: " + window.localStorage.getItem('incomeSources'));
+        }
     };
+    
     return (
         <>
             <Form className="mt-2" onSubmit={handleSubmit}>

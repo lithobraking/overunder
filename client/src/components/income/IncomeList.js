@@ -1,6 +1,6 @@
 import IncomeItem from "./IncomeItem";
 import incomeData from "../../mock-data/mock-income";
-import { Button, CloseButton, Collapse, Stack } from "react-bootstrap";
+import { Button, Collapse } from "react-bootstrap";
 import NewIncomeForm from "./NewIncomeForm";
 import { useState } from "react";
 
