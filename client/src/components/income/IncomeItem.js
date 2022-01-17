@@ -2,7 +2,6 @@ import { Card, CloseButton } from "react-bootstrap";
 
 const IncomeItem = ({incomeId, name, amount, frequency }) => {
     const handleClick = () => {
-        alert(`${incomeId}\n${name}\n${amount}\n${frequency} `);
         let income = JSON.parse(window.localStorage.getItem('incomeSources'));
         income.splice(incomeId, 1);
         window.localStorage.setItem('incomeSources', JSON.stringify(income));

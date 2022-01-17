@@ -1,7 +1,7 @@
 import IncomeItem from "./IncomeItem";
 import { Button, Collapse } from "react-bootstrap";
 import NewIncomeForm from "./NewIncomeForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const IncomeList = () => {
     const income = JSON.parse(window.localStorage.getItem('incomeSources'));
