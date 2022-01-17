@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Row, Col, Form, FormGroup } from "react-bootstrap";
 
 
-const NewIncomeForm = ({open, setOpen}) => {
+const NewIncomeForm = ({ open, setOpen }) => {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(0);
     const [frequency, setFrequency] = useState('daily');
@@ -16,6 +16,9 @@ const NewIncomeForm = ({open, setOpen}) => {
         };
 
         setOpen(!open);
+        setName('');
+        setAmount(0);
+        setFrequency('daily');
         if (localStorage.getItem('incomeSources')) {
             const sources = JSON.parse(window.localStorage.getItem('incomeSources'));
             sources.push(income);
@@ -25,9 +28,9 @@ const NewIncomeForm = ({open, setOpen}) => {
             const source = [income];
             window.localStorage.setItem('incomeSources', JSON.stringify(source));
             console.log("added new income successfully: " + window.localStorage.getItem('incomeSources'));
-        }
+        };
     };
-    
+
     return (
         <>
             <Form className="mt-2" onSubmit={handleSubmit}>
@@ -35,19 +38,20 @@ const NewIncomeForm = ({open, setOpen}) => {
                     <Col>
                         <FormGroup controlId="formIncomeName">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
+                            <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} />
                         </FormGroup>
                     </Col>
                     <Col>
                         <FormGroup controlId="formIncomeAmount">
                             <Form.Label>Amount</Form.Label>
-                            <Form.Control type="text" onChange={(e) => setAmount(e.target.value)} />
+                            <Form.Control type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
                         </FormGroup>
                     </Col>
                     <Col>
                         <FormGroup controlId="formIncomeFrequency">
                             <Form.Label>Frequency</Form.Label>
                             <Form.Select aria-label="select occurrence frequency"
+                                value={frequency}
                                 onChange={(e) => setFrequency(e.target.value)} >
                                 <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>
