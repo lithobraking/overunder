@@ -11,11 +11,12 @@ const IncomeList = () => {
         <>
             <div className="text-center">
                 {
-                    income ?
+                    income.length > 0 ?
                         income.map((income) => {
                             return (
                                 <IncomeItem
                                     key={income.id}
+                                    incomeId={income.id}
                                     name={income.name}
                                     amount={income.amount}
                                     frequency={income.frequency}
