@@ -5,14 +5,14 @@ import NewIncomeForm from "./NewIncomeForm";
 import { useState } from "react";
 
 const IncomeList = () => {
-    const income = incomeData.income;
+    const income = JSON.parse(window.localStorage.getItem('incomeSources'));
     const [open, setOpen] = useState(false);
 
     return (
         <>
             <div className="text-center">
                 {
-                    income.length > 0 ?
+                    income ?
                         income.map((income) => {
                             return (
                                 <IncomeItem
@@ -23,7 +23,7 @@ const IncomeList = () => {
                                 />
                             )
                         }) :
-                        "No income to display."
+                        <div className="my-5" ><h6><i>No income to display.</i></h6></div>
                 }
                 <Button variant="outline-primary" onClick={() => setOpen(!open)}>Add New</Button>
             </div>
