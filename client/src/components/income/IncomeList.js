@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const IncomeList = () => {
     const income = incomeData.income;
-
     const [open, setOpen] = useState(false);
 
     return (

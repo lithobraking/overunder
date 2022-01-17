@@ -10,6 +10,7 @@ const NewIncomeForm = ({ open, setOpen }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const income = {
+            id: 0,
             name: name,
             amount: amount,
             frequency: frequency
@@ -21,9 +22,10 @@ const NewIncomeForm = ({ open, setOpen }) => {
         setFrequency('daily');
         if (localStorage.getItem('incomeSources')) {
             const sources = JSON.parse(window.localStorage.getItem('incomeSources'));
+            income.id = sources.length;
             sources.push(income);
             window.localStorage.setItem('incomeSources', JSON.stringify(sources));
-            console.log("income updated successfully: " + window.localstorage.getItem('incomeSources'));
+            console.log("income updated successfully: " + window.localStorage.getItem('incomeSources'));
         } else {
             const source = [income];
             window.localStorage.setItem('incomeSources', JSON.stringify(source));
