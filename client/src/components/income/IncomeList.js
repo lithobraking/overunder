@@ -7,6 +7,10 @@ const IncomeList = () => {
     const income = JSON.parse(window.localStorage.getItem('incomeSources'));
     const [open, setOpen] = useState(false);
 
+    useEffect(() => {
+        console.log('useEffect called!');
+    });
+
     return (
         <>
             <div className="text-center">
