@@ -4,12 +4,12 @@ import NewIncomeForm from "./NewIncomeForm";
 import { useEffect, useState } from "react";
 
 const IncomeList = () => {
-    const income = JSON.parse(window.localStorage.getItem('incomeSources'));
+    const [income, setIncome] = useState(JSON.parse(window.localStorage.getItem('incomeSources')));
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        console.log('useEffect called!');
-    });
+        console.log('useEffect called.');
+    }, [income]);
 
     return (
         <>
@@ -24,6 +24,7 @@ const IncomeList = () => {
                                     name={income.name}
                                     amount={income.amount}
                                     frequency={income.frequency}
+                                    setIncome={setIncome}
                                 />
                             )
                         }) :
@@ -33,7 +34,10 @@ const IncomeList = () => {
             </div>
             <Collapse in={open}>
                 <div>
-                    <NewIncomeForm open={open} setOpen={setOpen} />
+                    <NewIncomeForm
+                        open={open}
+                        setOpen={setOpen}
+                        setIncome={setIncome} />
                 </div>
             </Collapse>
         </>

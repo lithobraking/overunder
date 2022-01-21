@@ -1,4 +1,4 @@
-import { Card, Container, Stack, Table } from "react-bootstrap"
+import { Card, Container, Table } from "react-bootstrap"
 import IncomeList from "./income/IncomeList";
 
 const Cashflow = () => {
