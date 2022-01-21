@@ -1,15 +1,11 @@
 import IncomeItem from "./IncomeItem";
 import { Button, Collapse } from "react-bootstrap";
 import NewIncomeForm from "./NewIncomeForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const IncomeList = () => {
     const [income, setIncome] = useState(JSON.parse(window.localStorage.getItem('incomeSources')));
     const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        console.log('useEffect called.');
-    }, [income]);
 
     return (
         <>

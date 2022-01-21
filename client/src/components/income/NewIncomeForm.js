@@ -26,14 +26,10 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
             sources.push(income);
             window.localStorage.setItem('incomeSources', JSON.stringify(sources));
             setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
-
-            console.log("income updated successfully: " + window.localStorage.getItem('incomeSources'));
         } else {
             const source = [income];
             window.localStorage.setItem('incomeSources', JSON.stringify(source));
             setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
-            
-            console.log("added new income successfully: " + window.localStorage.getItem('incomeSources'));
         };
     };
 

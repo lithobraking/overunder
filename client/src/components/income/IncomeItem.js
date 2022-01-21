@@ -6,7 +6,6 @@ const IncomeItem = ({incomeId, name, amount, frequency, setIncome }) => {
         income.splice(incomeId, 1);
         window.localStorage.setItem('incomeSources', JSON.stringify(income));
         setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
-        console.log(window.localStorage.getItem('incomeSources'));
     };
 
     return (
