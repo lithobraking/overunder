@@ -13,7 +13,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
         if (form.checkValidity() === false || name.length > 40 || amount <= 0) {
             e.preventDefault();
             e.stopPropigation();
-        }
+        };
 
         e.preventDefault();
         setValidated(true);
