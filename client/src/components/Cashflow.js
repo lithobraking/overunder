@@ -4,7 +4,7 @@ import IncomeList from "./income/IncomeList";
 const Cashflow = () => {
     return (
         <>
-            <Card className="mb-3 p-2">
+            <Card className="mb-3 p-2 shadow-sm">
                 <Container>
                     <div className="mb-3">
                         <h2><b>Income</b></h2>
@@ -17,7 +17,7 @@ const Cashflow = () => {
                     <IncomeList />
                 </Container>
             </Card>
-            <Card className="mb-3 p-2">
+            <Card className="mb-3 p-2 shadow-sm">
                 <Container>
                     <Card.Title><h3><b>Expenses</b></h3></Card.Title>
                     <Table borderless hover>
