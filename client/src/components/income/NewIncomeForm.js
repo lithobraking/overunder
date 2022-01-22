@@ -44,7 +44,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     return (
         <>
             <Form
-                noValidate
+                
                 validated={validated}
                 className="mt-2"
                 onSubmit={handleSubmit}>
