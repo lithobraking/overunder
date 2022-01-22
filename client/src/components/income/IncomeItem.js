@@ -1,9 +1,18 @@
 import { Card, CloseButton } from "react-bootstrap";
 
 const IncomeItem = ({incomeId, name, amount, frequency, setIncome }) => {
-    const handleClick = () => {
+    const handleRemove = () => {
         let income = JSON.parse(window.localStorage.getItem('incomeSources'));
         income.splice(incomeId, 1);
+        
+        income.forEach((e, idx) => {
+            // can be optimised by starting from the index of the element removed instead
+            // of the beginning of the array, I'm just being lazy
+            if (e.id !== idx) {
+                e.id = idx
+            };
+        });
+        console.log(income);
         window.localStorage.setItem('incomeSources', JSON.stringify(income));
         setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
     };
@@ -14,12 +23,12 @@ const IncomeItem = ({incomeId, name, amount, frequency, setIncome }) => {
                 {name}
             </div>
             <div className="w-100" style={{ textAlign: "center" }}>
-                {amount}
+                ${amount}
             </div>
             <div className="w-100" style={{ textAlign: "center" }}>
                 {frequency}
             </div>
-            <CloseButton className="position-absolute end-0 me-2" onClick={handleClick}/>
+            <CloseButton className="position-absolute end-0 me-2" onClick={handleRemove}/>
         </Card>
     );
 };

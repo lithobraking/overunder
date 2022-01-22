@@ -11,7 +11,7 @@ const IncomeList = () => {
         <>
             <div className="text-center">
                 {
-                    income.length > 0 ?
+                    income && income.length > 0 ?
                         income.map((income) => {
                             return (
                                 <IncomeItem
