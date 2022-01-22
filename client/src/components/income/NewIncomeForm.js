@@ -6,9 +6,17 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(0);
     const [frequency, setFrequency] = useState('daily');
+    const [validated, setValidated] = useState(false);
 
     const handleSubmit = (e) => {
+        const form = e.currentTarget;
+        if (form.checkValidity() === false || name.length > 40 || amount <= 0) {
+            e.preventDefault();
+            e.stopPropigation();
+        }
+
         e.preventDefault();
+        setValidated(true);
         const income = {
             id: 0,
             name: name,
@@ -35,18 +43,40 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
 
     return (
         <>
-            <Form className="mt-2" onSubmit={handleSubmit}>
+            <Form
+                noValidate
+                validated={validated}
+                className="mt-2"
+                onSubmit={handleSubmit}>
                 <Row>
                     <Col>
                         <FormGroup controlId="formIncomeName">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                            <Form.Control
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Field cannot be blank.
+                            </Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col>
                         <FormGroup controlId="formIncomeAmount">
                             <Form.Label>Amount</Form.Label>
-                            <Form.Control type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                            <Form.Control
+                                type="text"
+                                inputMode="numeric"
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                                min={0}
+                                required
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Amount must be greater than zero.
+                            </Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col>
