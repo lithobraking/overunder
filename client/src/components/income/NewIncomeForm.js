@@ -9,7 +9,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
 
     const handleAmountChange = (e) => {
         // makes sure 'Amount' input box only accepts numbers
-        const re = /^[0-9\b]+$/;
+        const re = /^[0-9\b\.]+$/;
         if (e.target.value === '' || re.test(e.target.value)) {
             setAmount(e.target.value);
         };
