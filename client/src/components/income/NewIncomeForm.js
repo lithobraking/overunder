@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Row, Col, Form, FormGroup, InputGroup } from "react-bootstrap";
 
 
@@ -6,6 +6,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
     const [frequency, setFrequency] = useState('daily');
+    const [isDisabled, setDisabled] = useState(true);
 
     const handleAmountChange = (e) => {
         // makes sure 'Amount' input box only accepts numbers
@@ -14,12 +15,17 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
             setAmount(e.target.value);
         };
     };
+    
+    useEffect(() => {
+        if (name.length > 0 && amount > 0) {
+            setDisabled(false);
+        };
+    });
 
     const handleSubmit = (e) => {
         const form = e.currentTarget;
         if (form.checkValidity() === false || name.length > 40 || amount <= 0) {
             e.preventDefault();
-            e.stopPropigation();
         };
 
         e.preventDefault();
@@ -32,7 +38,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
 
         setOpen(!open);
         setName('');
-        setAmount(0);
+        setAmount('');
         setFrequency('daily');
         if (localStorage.getItem('incomeSources')) {
             const sources = JSON.parse(window.localStorage.getItem('incomeSources'));
@@ -41,6 +47,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
             window.localStorage.setItem('incomeSources', JSON.stringify(sources));
             setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
         } else {
+            // if inconeSources doesn't exist in localStorage, create it
             const source = [income];
             window.localStorage.setItem('incomeSources', JSON.stringify(source));
             setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
@@ -86,18 +93,18 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
                             <Form.Select aria-label="select occurrence frequency"
                                 value={frequency}
                                 onChange={(e) => setFrequency(e.target.value)} >
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="biweekly">Bi-weekly</option>
-                                <option value="monthly">Monthly</option>
-                                <option value="quarterly">Quarterly</option>
-                                <option value="yearly">Yearly</option>
+                                <option value="Daily">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Biweekly">Bi-weekly</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly">Quarterly</option>
+                                <option value="Yearly">Yearly</option>
                             </Form.Select>
                         </FormGroup>
                     </Col>
                 </Row>
                 <div className="w-auto text-center mt-2">
-                    <Button variant="primary" type="submit">Add</Button>
+                    <Button variant="primary" type="submit" disabled={isDisabled} >Add</Button>
                 </div>
             </Form>
         </>
