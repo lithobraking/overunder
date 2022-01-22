@@ -39,7 +39,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
         setOpen(!open);
         setName('');
         setAmount('');
-        setFrequency('daily');
+        setFrequency('Daily');
         if (localStorage.getItem('incomeSources')) {
             const sources = JSON.parse(window.localStorage.getItem('incomeSources'));
             income.id = sources.length;
@@ -95,7 +95,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
                                 onChange={(e) => setFrequency(e.target.value)} >
                                 <option value="Daily">Daily</option>
                                 <option value="Weekly">Weekly</option>
-                                <option value="Biweekly">Bi-weekly</option>
+                                <option value="Bi-weekly">Bi-weekly</option>
                                 <option value="Monthly">Monthly</option>
                                 <option value="Quarterly">Quarterly</option>
                                 <option value="Yearly">Yearly</option>
