@@ -5,7 +5,7 @@ import { Button, Row, Col, Form, FormGroup, InputGroup } from "react-bootstrap";
 const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
-    const [frequency, setFrequency] = useState('daily');
+    const [frequency, setFrequency] = useState('Daily');
     const [isDisabled, setDisabled] = useState(true);
 
     const handleAmountChange = (e) => {
@@ -19,6 +19,8 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     useEffect(() => {
         if (name.length > 0 && amount > 0) {
             setDisabled(false);
+        } else {
+            setDisabled(true);
         };
     });
 
