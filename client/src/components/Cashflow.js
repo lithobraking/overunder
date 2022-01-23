@@ -1,4 +1,5 @@
-import { Card, Container, Table } from "react-bootstrap"
+import { Card, Container } from "react-bootstrap"
+import ExpenseList from "./expenses/ExpenseList";
 import IncomeList from "./income/IncomeList";
 
 const Cashflow = () => {
@@ -19,17 +20,15 @@ const Cashflow = () => {
             </Card>
             <Card className="mb-3 p-2 shadow-sm">
                 <Container>
-                    <Card.Title><h3><b>Expenses</b></h3></Card.Title>
-                    <Table borderless hover>
-                        <thead>
-                            <th>Expense</th>
-                            <th>Cost</th>
-                            <th>Frequency</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </Table>
+                    <div className="mb-3">
+                        <h2><b>Expenses</b></h2>
+                    </div>
+                    <div className="d-flex flex-row justify-content-around px-3">
+                        <div style={{ textAlign: "center" }} className="w-100"><h5><b>Name</b></h5></div>
+                        <div style={{ textAlign: "center" }} className="w-100"><h5><b>Cost</b></h5></div>
+                        <div style={{ textAlign: "center" }} className="w-100"><h5><b>Frequency</b></h5></div>
+                    </div>
+                    <ExpenseList />
                 </Container>
             </Card>
         </>
