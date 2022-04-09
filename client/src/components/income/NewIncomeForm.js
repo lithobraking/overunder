@@ -17,7 +17,6 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     };
     
     useEffect(() => {
-        console.log("useEffect() called.");
         if (name.length > 0 && amount > 0) {
             setDisabled(false);
         } else {
@@ -50,7 +49,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
             window.localStorage.setItem('incomeSources', JSON.stringify(sources));
             setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
         } else {
-            // if inconeSources doesn't exist in localStorage, create it
+            // if incomeSources doesn't exist in localStorage, create it
             const source = [income];
             window.localStorage.setItem('incomeSources', JSON.stringify(source));
             setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
