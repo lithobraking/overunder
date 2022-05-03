@@ -3,15 +3,26 @@ import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
 
-const Totals = () => {
+const TotalsDisplay = () => {
     const [gross, setGross] = useState(0);
     const [tax, setTax] = useState(0);
     const [expenses, setExpenses] = useState(0);
     const [net, setNet] = useState(0);
 
     useEffect(() => {
-        const income = JSON.parse(window.localStorage.getItem('incomeSources'));
-    }, [gross, tax, expenses, net]);
+        const handleIncomeChange = () => {
+            const income = JSON.parse(window.localStorage.getItem('incomeSources'));
+            const amounts = income.map(item => parseFloat(item.amount));
+            const startingValue = gross;
+            const incomeTotal = amounts.reduce((previousValue, currentValue) => previousValue + currentValue, startingValue);
+            setGross(incomeTotal);
+        }
+        console.log("useEffect() called!");
+        window.addEventListener('storage', handleIncomeChange);
+        return () => {
+            window.removeEventListener('storage', handleIncomeChange);
+        }
+    });
 
     return (
         <Container>
@@ -34,4 +45,4 @@ const Totals = () => {
     );
 }
 
-export default Totals;
+export default TotalsDisplay;
