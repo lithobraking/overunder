@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Row, Col, Form, FormGroup, InputGroup } from "react-bootstrap";
-
+import { useDispatch, useSelector } from "react-redux";
+import { createIncome } from "../../state/action-creators/incomeActionCreators";
 
 const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     const [name, setName] = useState('');
@@ -8,14 +9,16 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     const [frequency, setFrequency] = useState('Daily');
     const [isDisabled, setDisabled] = useState(true);
 
+    const dispatch = useDispatch();
+
     const handleAmountChange = (e) => {
         // makes sure 'Amount' input box only accepts numbers
         const re = /^[0-9\b.]+$/;
-        if (e.target.valuegit  === '' || re.test(e.target.value)) {
+        if (e.target.valuegit === '' || re.test(e.target.value)) {
             setAmount(e.target.value);
         };
     };
-    
+
     useEffect(() => {
         if (name.length > 0 && amount > 0) {
             setDisabled(false);
@@ -38,6 +41,13 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
             frequency: frequency
         };
 
+        const incomeState = {
+            id: 0,
+            name: name,
+            amount: amount,
+            frequency: frequency
+        };
+
         setOpen(!open);
         setName('');
         setAmount('');
@@ -45,15 +55,15 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
         if (localStorage.getItem('incomeSources')) {
             const sources = JSON.parse(window.localStorage.getItem('incomeSources'));
             income.id = sources.length;
+            incomeState.id = sources.length;
             sources.push(income);
             window.localStorage.setItem('incomeSources', JSON.stringify(sources));
-            setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
         } else {
             // if incomeSources doesn't exist in localStorage, create it
             const source = [income];
             window.localStorage.setItem('incomeSources', JSON.stringify(source));
-            setIncome(JSON.parse(window.localStorage.getItem('incomeSources')));
         };
+        dispatch(createIncome(incomeState));
     };
 
     return (

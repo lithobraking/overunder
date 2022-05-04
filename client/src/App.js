@@ -10,7 +10,6 @@ function App() {
 				<Col><TotalsDisplay /></Col>
 			</Row>
 		</Container>
-
 	);
 }
 
