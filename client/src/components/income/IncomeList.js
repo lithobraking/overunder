@@ -5,15 +5,15 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const IncomeList = () => {
+    const income = useSelector((state) => state.income.incomeSources);
     const [open, setOpen] = useState(false);
-    const incomes = useSelector((state) => state.income.incomeSources);
 
     return (
         <>
             <div className="text-center">
                 {
-                    incomes && incomes.length > 0 ?
-                        incomes.map((income) => {
+                    income && income.length > 0 ?
+                        income.map((income) => {
                             return (
                                 <IncomeItem
                                     key={income.id}

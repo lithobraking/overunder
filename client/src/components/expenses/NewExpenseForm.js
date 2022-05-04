@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { Button, Row, Col, Form, FormGroup, InputGroup } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { createExpense } from "../../state/action-creators/expenseActionCreators";
 
 const NewExpenseForm = ({ open, setOpen, setExpense }) => {
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
     const [frequency, setFrequency] = useState('Daily');
     const [isDisabled, setDisabled] = useState(true);
+
+    const dispatch = useDispatch();
 
     const handleCostChange = (e) => {
         const re = /^[0-9\b.]+$/;
@@ -35,6 +39,14 @@ const NewExpenseForm = ({ open, setOpen, setExpense }) => {
             cost: cost,
             frequency: frequency
         };
+        // for some reason I get errors if I try to use `expense` for both localStorage and
+        // redux, so instead of fighting it I'm just duplicating the variable
+        const expenseState = {
+            id: 0,
+            name: name,
+            cost: cost,
+            frequency: frequency
+        };
 
         setOpen(!open);
         setName('');
@@ -43,14 +55,14 @@ const NewExpenseForm = ({ open, setOpen, setExpense }) => {
         if (localStorage.getItem('expenses')) {
             const expenses = JSON.parse(window.localStorage.getItem('expenses'));
             expense.id = expenses.length;
+            expenseState.id = expenses.length;
             expenses.push(expense);
             window.localStorage.setItem('expenses', JSON.stringify(expenses));
-            setExpense(JSON.parse(window.localStorage.getItem('expenses')));
         } else {
             const newExpense = [expense];
             window.localStorage.setItem('expenses', JSON.stringify(newExpense));
-            setExpense(JSON.parse(window.localStorage.getItem('expenses')));
         };
+        dispatch(createExpense(expenseState));
     };
 
     return (

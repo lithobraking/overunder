@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Row, Col, Form, FormGroup, InputGroup } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createIncome } from "../../state/action-creators/incomeActionCreators";
 
 const NewIncomeForm = ({ open, setOpen, setIncome }) => {
@@ -14,7 +14,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     const handleAmountChange = (e) => {
         // makes sure 'Amount' input box only accepts numbers
         const re = /^[0-9\b.]+$/;
-        if (e.target.valuegit === '' || re.test(e.target.value)) {
+        if (e.target.value === '' || re.test(e.target.value)) {
             setAmount(e.target.value);
         };
     };
@@ -40,7 +40,8 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
             amount: amount,
             frequency: frequency
         };
-
+        // for some reason I get errors if I try to use `income` for both localStorage and
+        // redux, so instead of fighting it I'm just duplicating the variable
         const incomeState = {
             id: 0,
             name: name,

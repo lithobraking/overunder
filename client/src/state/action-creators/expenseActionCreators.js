@@ -1,17 +1,4 @@
-export const createExpense = (expense) => {
-    return (dispatch) => {
-        dispatch({
-            type: "create",
-            payload: expense
-        })
-    };
-};
+import { createAction } from "@reduxjs/toolkit";
 
-export const deleteExpense = (expense) => {
-    return (dispatch) => {
-        dispatch({
-            type: "delete",
-            payload: expense
-        })
-    };
-};
+export const createExpense = createAction('createExpense');
+export const deleteExpense = createAction('deleteExpense');

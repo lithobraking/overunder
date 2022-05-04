@@ -8,10 +8,8 @@ const IncomeItem = ({incomeId, name, amount, frequency }) => {
     const handleRemove = () => {
         let income = JSON.parse(window.localStorage.getItem('incomeSources'));
         income.splice(incomeId, 1);
-        
+        // TODO: replace with array.filter()
         income.forEach((e, idx) => {
-            // can be optimised by starting from the index of the element removed instead
-            // of the beginning of the array, I'm just being lazy
             if (e.id !== idx) {
                 e.id = idx
             };

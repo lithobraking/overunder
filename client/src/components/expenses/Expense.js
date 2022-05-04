@@ -1,16 +1,22 @@
 import { Card, CloseButton } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteExpense } from "../../state/action-creators/expenseActionCreators";
 
-const Expense = ({ expenseId, name, cost, frequency, setExpense }) => {
+const Expense = ({ expenseId, name, cost, frequency }) => {
+    const expenses = useSelector((state) => state.expenses.expenses);
+    const dispatch = useDispatch();
+
     const handleRemove = () => {
         let expense = JSON.parse(window.localStorage.getItem('expenses'));
         expense.splice(expenseId, 1);
+        // TODO: replace with array.filter()
         expense.forEach((e, idx) => {
             if (e.id !== idx) {
                 e.id = idx
             };
         });
+        dispatch(deleteExpense({id: expenseId}))
         window.localStorage.setItem('expenses', JSON.stringify(expense));
-        setExpense(JSON.parse(window.localStorage.getItem('expenses')));
     };
 
     return (

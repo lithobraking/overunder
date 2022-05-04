@@ -17,7 +17,7 @@ const TotalsDisplay = () => {
             const incomeTotal = amounts.reduce((previousValue, currentValue) => previousValue + currentValue, startingValue);
             setGross(incomeTotal);
         }
-        console.log("useEffect() called!");
+        // console.log("useEffect() called!");
         window.addEventListener('storage', handleIncomeChange);
         return () => {
             window.removeEventListener('storage', handleIncomeChange);

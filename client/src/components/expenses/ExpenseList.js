@@ -2,17 +2,19 @@ import Expense from "./Expense";
 import NewExpenseForm from "./NewExpenseForm";
 import { Button, Collapse } from "react-bootstrap";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ExpenseList = () => {
-    const [expense, setExpense] = useState(JSON.parse(window.localStorage.getItem('expenses')));
+    // const [expense, setExpense] = useState(JSON.parse(window.localStorage.getItem('expenses')));
     const [open, setOpen] = useState(false);
+    const expenses = useSelector((state) => state.expenses.expenseSources);
 
     return (
         <>
             <div className="text-center">
                 {
-                    expense && expense.length > 0 ?
-                        expense.map((expense) => {
+                    expenses && expenses.length > 0 ?
+                        expenses.map((expense) => {
                             return (
                                 <Expense
                                     key={expense.id}
@@ -20,7 +22,6 @@ const ExpenseList = () => {
                                     name={expense.name}
                                     cost={expense.cost}
                                     frequency={expense.frequency}
-                                    setExpense={setExpense}
                                 />
                             )
                         }) :
@@ -33,7 +34,7 @@ const ExpenseList = () => {
                     <NewExpenseForm
                         open={open}
                         setOpen={setOpen}
-                        setExpense={setExpense} />
+                    />
                 </div>
             </Collapse>
         </>
