@@ -8,7 +8,6 @@ const IncomeItem = ({incomeId, name, amount, frequency }) => {
     const handleRemove = () => {
         let income = JSON.parse(window.localStorage.getItem('incomeSources'));
         income.splice(incomeId, 1);
-        // TODO: replace with array.filter()
         income.forEach((e, idx) => {
             if (e.id !== idx) {
                 e.id = idx

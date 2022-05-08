@@ -11,6 +11,11 @@ const incomeReducer = createReducer(initialState, (builder) => {
     });
     builder.addCase(deleteIncome, (state, action) => {
         state.incomeSources = state.incomeSources.filter((income) => income.id !== action.payload.id);
+        state.incomeSources.forEach((e, idx) => {
+            if (e.id !== idx) {
+                e.id = idx
+            };
+        });
     });
 });
 
