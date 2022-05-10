@@ -6,7 +6,7 @@ import { createIncome } from "../../state/action-creators/incomeActionCreators";
 const NewIncomeForm = ({ open, setOpen, setIncome }) => {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
-    const [frequency, setFrequency] = useState('Daily');
+    const [frequency, setFrequency] = useState('Monthly');
     const [isDisabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();

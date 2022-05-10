@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { updateNetIncome } from "../action-creators/netIncomeActionCreators";
 
 const initialState = {
-    netIncome: 0
+    netIncome: JSON.parse(window.localStorage.getItem('netIncome')) || 0
 };
 
 const netIncomeReducer = createReducer(initialState, (builder) => {

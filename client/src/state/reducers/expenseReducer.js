@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {createExpense, deleteExpense} from "../action-creators/expenseActionCreators";
+import { createExpense, deleteExpense } from "../action-creators/expenseActionCreators";
 
 const initialState = {
     expenseSources: JSON.parse(window.localStorage.getItem('expenses')) || []
@@ -11,6 +11,11 @@ const expenseReducer = createReducer(initialState, (builder) => {
     });
     builder.addCase(deleteExpense, (state, action) => {
         state.expenseSources = state.expenseSources.filter((expense) => expense.id !== action.payload.id);
+        state.expenseSources.forEach((e, idx) => {
+            if (e.id !== idx) {
+                e.id = idx
+            };
+        });
     });
 });
 

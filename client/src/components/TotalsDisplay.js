@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateNetIncome } from "../state/action-creators/netIncomeActionCreators";
 
 
 const TotalsDisplay = () => {
@@ -9,6 +10,14 @@ const TotalsDisplay = () => {
     const tax = useSelector((state) => state.tax.tax);
     const netIncome = useSelector((state) => state.netIncome.netIncome);
     const totalExpenses = useSelector((state) => state.totalExpenses.totalExpenses);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const netIncome = grossIncome - totalExpenses - tax;
+        window.localStorage.setItem("netIncome", JSON.stringify(netIncome));
+        dispatch(updateNetIncome(netIncome));
+    }, [grossIncome, totalExpenses, tax]);
+
 
     return (
         <Container>

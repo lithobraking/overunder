@@ -6,7 +6,7 @@ import { createExpense } from "../../state/action-creators/expenseActionCreators
 const NewExpenseForm = ({ open, setOpen, setExpense }) => {
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
-    const [frequency, setFrequency] = useState('Daily');
+    const [frequency, setFrequency] = useState('Monthly');
     const [isDisabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();

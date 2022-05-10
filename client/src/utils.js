@@ -3,28 +3,40 @@ const frequencies = {
     'Weekly': 52,
     'Bi-weekly': 26,
     'Monthly': 12,
-    'Quarterly': 4
+    'Quarterly': 4,
+    'Yearly': 1
+};
+
+const standardDeduction = {
+    single: 12550,
+    marriedSeparate: 12550,
+    headOfHousehold: 18800,
+    marriedJoint: 25100,
 };
 
 export const calculateIncomeTotal = (incomeList) => {
     const amounts = incomeList.map((income) => parseInt(income.amount) * frequencies[income.frequency]);
     return amounts.reduce((total, amount) => {
-        return total + amount;
+        return Math.round(total + amount);
     });
 };
 
 export const calculateExpenseTotal = (expenseList) => {
-    return expenseList.reduce((total, amount) => {
-        return total + amount;
-    }, 0);
+    const costs = expenseList.map((expense) => parseInt(expense.cost) * frequencies[expense.frequency]);
+    return costs.reduce((total, amount) => {
+        return Math.round(total + amount);
+    });
 };
 
-export const calculateBracket = (rate, lowerBound, upperBound) => {
-    return Math.round((upperBound - lowerBound) * rate);
-}
 
 export const calculateSingleTax = (grossIncome) => {
-    // TODO: add standard deduction? does it matter?
+    // TODO: add standard deduction
+    const deductedIncome = grossIncome - standardDeduction.single;
+
+    const calculateBracket = (rate, lowerBound, upperBound) => {
+        return Math.round((upperBound - lowerBound) * rate);
+    };
+
     const brackets = {
         10: {
             rate: 0.1,
@@ -69,7 +81,7 @@ export const calculateSingleTax = (grossIncome) => {
         }
     };
 
-    let remainder = grossIncome;
+    let remainder = deductedIncome;
     let tax = 0;
     for (let bracket in brackets) {
         if (remainder > brackets[bracket].upperBound) {
@@ -80,7 +92,7 @@ export const calculateSingleTax = (grossIncome) => {
             break;
         }
     }
-    return tax;
+    return Math.round(tax);
 }
 
 // const marriedJoint = {

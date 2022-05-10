@@ -3,7 +3,7 @@ import { createIncome, deleteIncome } from "../action-creators/incomeActionCreat
 
 const initialState = {
     incomeSources: JSON.parse(window.localStorage.getItem('incomeSources')) || []
-}
+};
 
 const incomeReducer = createReducer(initialState, (builder) => {
     builder.addCase(createIncome, (state, action) => {
