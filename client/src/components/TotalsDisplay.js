@@ -27,13 +27,13 @@ const TotalsDisplay = () => {
                         <h2><b>Totals</b></h2>
                     </div>
                     <h3>Gross Income</h3>
-                    <h4>${grossIncome || 0}</h4>
+                    <h4>${grossIncome || 0} / yr</h4>
                     <h3>Taxes</h3>
-                    <h4>${tax}</h4>
+                    <h4>${tax} / yr</h4>
                     <h3>Total Expenses</h3>
-                    <h4>${totalExpenses}</h4>
+                    <h4>${totalExpenses} / yr</h4>
                     <h3>Net Income</h3>
-                    <h4>${netIncome}</h4>
+                    <h4>${netIncome} / yr</h4>
                 </Card.Body>
             </Card>
         </Container>

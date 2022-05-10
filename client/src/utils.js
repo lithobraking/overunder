@@ -1,3 +1,4 @@
+// TODO: add support for hourly wages
 const frequencies = {
     'Daily': 365,
     'Weekly': 52,
@@ -30,9 +31,7 @@ export const calculateExpenseTotal = (expenseList) => {
 
 
 export const calculateSingleTax = (grossIncome) => {
-    // TODO: add standard deduction
     const deductedIncome = grossIncome - standardDeduction.single;
-
     const calculateBracket = (rate, lowerBound, upperBound) => {
         return Math.round((upperBound - lowerBound) * rate);
     };
