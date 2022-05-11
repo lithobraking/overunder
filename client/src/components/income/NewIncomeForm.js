@@ -52,7 +52,7 @@ const NewIncomeForm = ({ open, setOpen, setIncome }) => {
         setOpen(!open);
         setName('');
         setAmount('');
-        setFrequency('Daily');
+        setFrequency('Monthly');
         if (localStorage.getItem('incomeSources')) {
             const sources = JSON.parse(window.localStorage.getItem('incomeSources'));
             income.id = sources.length;

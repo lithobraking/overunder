@@ -17,7 +17,7 @@ const standardDeduction = {
 
 export const calculateIncomeTotal = (incomeList) => {
     if (incomeList.length > 0) {
-    const amounts = incomeList.map((income) => parseInt(income.amount) * frequencies[income.frequency]);
+    const amounts = incomeList.map((income) => parseFloat(income.amount) * frequencies[income.frequency]);
     return amounts.reduce((total, amount) => {
         return total + amount;
     });
@@ -27,7 +27,7 @@ export const calculateIncomeTotal = (incomeList) => {
 };
 
 export const calculateExpenseTotal = (expenseList) => {
-    const costs = expenseList.map((expense) => parseInt(expense.cost) * frequencies[expense.frequency]);
+    const costs = expenseList.map((expense) => parseFloat(expense.cost) * frequencies[expense.frequency]);
     return costs.reduce((total, amount) => {
         return total + amount;
     });
@@ -47,42 +47,42 @@ export const calculateSingleTax = (grossIncome) => {
         10: {
             rate: 0.1,
             lowerBound: 0,
-            upperBound: 9950,
-            full: calculateBracket(0.1, 0, 9950)
+            upperBound: 10275,
+            full: calculateBracket(0.1, 0, 10275)
         },
         12: {
             rate: 0.12,
-            lowerBound: 9951,
-            upperBound: 40525,
-            full: calculateBracket(0.12, 9951, 40525)
+            lowerBound: 10276,
+            upperBound: 41775,
+            full: calculateBracket(0.12, 10276, 41775)
         },
         22: {
             rate: 0,
-            lowerBound: 40526,
-            upperBound: 86375,
-            full: calculateBracket(0.22, 40526, 86375)
+            lowerBound: 41776,
+            upperBound: 89075,
+            full: calculateBracket(0.22, 41776, 89075)
         },
         24: {
             rate: 0.24,
-            lowerBound: 86376,
-            upperBound: 167925,
-            full: calculateBracket(0.24, 86376, 167925)
+            lowerBound: 89076,
+            upperBound: 170050,
+            full: calculateBracket(0.24, 89076, 170050)
         },
         32: {
             rate: 0.32,
-            lowerBound: 167926,
-            upperBound: 209425,
-            full: calculateBracket(0.32, 167926, 209425)
+            lowerBound: 170051,
+            upperBound: 215950,
+            full: calculateBracket(0.32, 170051, 215950)
         },
         35: {
             rate: 0.35,
-            lowerBound: 209426,
-            upperBound: 523600,
-            full: calculateBracket(0.35, 209426, 523600)
+            lowerBound: 215951,
+            upperBound: 539900,
+            full: calculateBracket(0.35, 215951, 539900)
         },
         37: {
             rate: 0.37,
-            lowerBound: 523601,
+            lowerBound: 539901,
             upperBound: Infinity,
         }
     };
@@ -98,7 +98,7 @@ export const calculateSingleTax = (grossIncome) => {
             break;
         }
     }
-    return Math.round(tax);
+    return tax;
 }
 
 // const marriedJoint = {
