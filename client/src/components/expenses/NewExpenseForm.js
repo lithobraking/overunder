@@ -51,7 +51,7 @@ const NewExpenseForm = ({ open, setOpen, setExpense }) => {
         setOpen(!open);
         setName('');
         setCost('');
-        setFrequency('Daily');
+        setFrequency('Monthly');
         if (localStorage.getItem('expenses')) {
             const expenses = JSON.parse(window.localStorage.getItem('expenses'));
             expense.id = expenses.length;

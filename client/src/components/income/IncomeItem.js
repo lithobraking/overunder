@@ -1,9 +1,8 @@
 import { Card, CloseButton } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteIncome } from "../../state/action-creators/incomeActionCreators";
 
 const IncomeItem = ({incomeId, name, amount, frequency }) => {
-    const income = useSelector((state) => state.income.incomeItems)
     const dispatch = useDispatch();
     const handleRemove = () => {
         let income = JSON.parse(window.localStorage.getItem('incomeSources'));
