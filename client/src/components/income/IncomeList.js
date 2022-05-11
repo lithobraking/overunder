@@ -27,7 +27,7 @@ const IncomeList = () => {
 
             window.localStorage.setItem("tax", JSON.stringify(0));
             dispatch(updateTax(0));
-        }
+        };
     }, [income]);
 
     return (

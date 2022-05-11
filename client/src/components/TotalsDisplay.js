@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { updateNetIncome } from "../state/action-creators/netIncomeActionCreators";
-
+import CountUp from "react-countup";
 
 const TotalsDisplay = () => {
     const grossIncome = useSelector((state) => state.grossIncome.grossIncome);
@@ -16,8 +16,7 @@ const TotalsDisplay = () => {
         const netIncome = grossIncome - totalExpenses - tax;
         window.localStorage.setItem("netIncome", JSON.stringify(netIncome));
         dispatch(updateNetIncome(netIncome));
-    }, [grossIncome, totalExpenses, tax]);
-
+    });
 
     return (
         <Container>
@@ -27,13 +26,20 @@ const TotalsDisplay = () => {
                         <h2><b>Totals</b></h2>
                     </div>
                     <h3>Gross Income</h3>
-                    <h4>${grossIncome || 0} / yr</h4>
+                    <h4><CountUp
+                        end={grossIncome}
+                        prefix="$"
+                        suffix=" /year"
+                        separator=","
+                        decimals={2}
+                        preserveValue />
+                    </h4>
                     <h3>Taxes</h3>
-                    <h4>${tax} / yr</h4>
+                    <h4><CountUp end={tax} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
                     <h3>Total Expenses</h3>
-                    <h4>${totalExpenses} / yr</h4>
+                    <h4><CountUp end={totalExpenses} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
                     <h3>Net Income</h3>
-                    <h4>${netIncome} / yr</h4>
+                    <h4><CountUp end={netIncome} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
                 </Card.Body>
             </Card>
         </Container>

@@ -16,24 +16,31 @@ const standardDeduction = {
 };
 
 export const calculateIncomeTotal = (incomeList) => {
+    if (incomeList.length > 0) {
     const amounts = incomeList.map((income) => parseInt(income.amount) * frequencies[income.frequency]);
     return amounts.reduce((total, amount) => {
-        return Math.round(total + amount);
+        return total + amount;
     });
+    } else {
+        return 0;
+    };
 };
 
 export const calculateExpenseTotal = (expenseList) => {
     const costs = expenseList.map((expense) => parseInt(expense.cost) * frequencies[expense.frequency]);
     return costs.reduce((total, amount) => {
-        return Math.round(total + amount);
+        return total + amount;
     });
 };
 
-
 export const calculateSingleTax = (grossIncome) => {
+    if (grossIncome === 0) {
+        return 0;
+    };
+    
     const deductedIncome = grossIncome - standardDeduction.single;
     const calculateBracket = (rate, lowerBound, upperBound) => {
-        return Math.round((upperBound - lowerBound) * rate);
+        return (upperBound - lowerBound) * rate;
     };
 
     const brackets = {

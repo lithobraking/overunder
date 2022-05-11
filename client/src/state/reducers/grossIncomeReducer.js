@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { updateGrossIncome } from "../action-creators/grossIncomeActionCreators";
 
 const initialState = {
-    grossIncome: JSON.parse(window.localStorage.getItem('grossIncome')) || 0
+    grossIncome: JSON.parse(window.localStorage.getItem('grossIncome'))
 };
 
 const grossIncomeReducer = createReducer(initialState, (builder) => {
