@@ -50,7 +50,10 @@ const TotalsDisplay = () => {
                         />
                         /year
                     </h4>
-                    <ProgressBar now={((totalExpenses + tax) / grossIncome) * 100} />
+                    <ProgressBar
+                        variant={(totalExpenses / (grossIncome - tax) * 100) < 100 ? null : "danger"}
+                        now={totalExpenses / (grossIncome - tax) * 100}
+                    />
                 </Card.Body>
             </Card>
         </Container>
