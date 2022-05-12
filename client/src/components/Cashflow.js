@@ -1,11 +1,10 @@
 import { Card, Container } from "react-bootstrap"
 import ExpenseList from "./expenses/ExpenseList";
 import IncomeList from "./income/IncomeList";
-
 const Cashflow = () => {
     return (
         <>
-            <Card className="mb-3 p-2 shadow-sm">
+            <Card className="mb-3 p-2 bg-primary border-light shadow-soft">
                 <Container>
                     <div className="mb-3">
                         <h2><b>Income</b></h2>
@@ -18,7 +17,7 @@ const Cashflow = () => {
                     <IncomeList />
                 </Container>
             </Card>
-            <Card className="mb-3 p-2 shadow-sm">
+            <Card className="mb-3 p-2 bg-primary border-light shadow-soft">
                 <Container>
                     <div className="mb-3">
                         <h2><b>Expenses</b></h2>
