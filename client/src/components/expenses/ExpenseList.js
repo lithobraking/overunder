@@ -41,7 +41,7 @@ const ExpenseList = () => {
                         }) :
                         <div className="my-5" ><h6><i>No expenses to display.</i></h6></div>
                 }
-                <Button variant="outline-primary" onClick={() => setOpen(!open)}>Add New</Button>
+                <Button onClick={() => setOpen(!open)}>{open ? "Cancel" : "Add New"}</Button>
             </div>
             <Collapse in={open}>
                 <div>

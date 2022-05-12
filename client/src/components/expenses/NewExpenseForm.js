@@ -101,7 +101,9 @@ const NewExpenseForm = ({ open, setOpen, setExpense }) => {
                     <Col>
                         <FormGroup controlId="formExpenseFrequency">
                             <Form.Label>Frequency</Form.Label>
-                            <Form.Select aria-label="select occurrence frequency"
+                            <Form.Select
+                                className="custom-select"
+                                aria-label="select occurrence frequency"
                                 value={frequency}
                                 onChange={(e) => setFrequency(e.target.value)} >
                                 <option value="Daily">Daily</option>

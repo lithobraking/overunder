@@ -20,7 +20,7 @@ const TotalsDisplay = () => {
 
     return (
         <Container>
-            <Card className="shadow-sm">
+            <Card className="bg-primary border-light shadow-soft">
                 <Card.Body>
                     <div className="mb-3">
                         <h2><b>Totals</b></h2>
@@ -39,7 +39,8 @@ const TotalsDisplay = () => {
                     <h3>Total Expenses</h3>
                     <h4><CountUp end={totalExpenses} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
                     <h3>Net Income</h3>
-                    <h4><CountUp end={netIncome} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
+                    <h4><CountUp end={netIncome} prefix="$" separator="," decimals={2} preserveValue
+                        style={{ color: netIncome >= 0 ? "#262833" : "red" }} /> /year</h4>
                 </Card.Body>
             </Card>
         </Container>
