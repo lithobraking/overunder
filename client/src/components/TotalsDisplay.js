@@ -18,6 +18,16 @@ const TotalsDisplay = () => {
         dispatch(updateNetIncome(netIncome));
     });
 
+    const updateProgressBar = (grossIncome, totalExpenses, tax) => {
+        if(grossIncome === 0 && totalExpenses > 0) {
+            return 100;
+        } else if(grossIncome === 0 && totalExpenses === 0) {
+            return 0;
+        } else {
+            return totalExpenses / (grossIncome - tax) * 100;
+        };
+    };
+
     return (
         <Container>
             <Card className="bg-primary border-light shadow-soft">
@@ -51,7 +61,7 @@ const TotalsDisplay = () => {
                     </h4>
                     <ProgressBar
                         variant={(totalExpenses / (grossIncome - tax) * 100) < 100 ? null : "danger"}
-                        now={totalExpenses / (grossIncome - tax) * 100}
+                        now={updateProgressBar(grossIncome, totalExpenses, tax)}
                     />
                 </Card.Body>
             </Card>
