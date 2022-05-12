@@ -47,8 +47,7 @@ const TotalsDisplay = () => {
                             decimals={2}
                             preserveValue
                             style={{ color: netIncome >= 0 ? "#262833" : "red" }}
-                        />
-                        /year
+                        /> /year
                     </h4>
                     <ProgressBar
                         variant={(totalExpenses / (grossIncome - tax) * 100) < 100 ? null : "danger"}
