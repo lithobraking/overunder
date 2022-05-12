@@ -9,11 +9,13 @@
 .progress-bar {
     box-shadow: none;
     height: auto;
+    background-color: $secondary;
     @include border-radius($badge-border-radius);
 }
 
 .progress {
-    height: .6rem;
+    // height originally .6rem
+    height: 2rem;
     border: $border-width solid $light;
     margin-bottom: $spacer;
     overflow: hidden;

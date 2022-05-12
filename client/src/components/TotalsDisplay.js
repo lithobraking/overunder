@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, ProgressBar } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { updateNetIncome } from "../state/action-creators/netIncomeActionCreators";
@@ -17,6 +17,16 @@ const TotalsDisplay = () => {
         window.localStorage.setItem("netIncome", JSON.stringify(netIncome));
         dispatch(updateNetIncome(netIncome));
     });
+
+    const updateProgressBar = (grossIncome, totalExpenses, tax) => {
+        if(grossIncome === 0 && totalExpenses > 0) {
+            return 100;
+        } else if(grossIncome === 0 && totalExpenses === 0) {
+            return 0;
+        } else {
+            return totalExpenses / (grossIncome - tax) * 100;
+        };
+    };
 
     return (
         <Container>
@@ -39,8 +49,20 @@ const TotalsDisplay = () => {
                     <h3>Total Expenses</h3>
                     <h4><CountUp end={totalExpenses} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
                     <h3>Net Income</h3>
-                    <h4><CountUp end={netIncome} prefix="$" separator="," decimals={2} preserveValue
-                        style={{ color: netIncome >= 0 ? "#262833" : "red" }} /> /year</h4>
+                    <h4>
+                        <CountUp
+                            end={netIncome}
+                            prefix="$"
+                            separator=","
+                            decimals={2}
+                            preserveValue
+                            style={{ color: netIncome >= 0 ? "#262833" : "red" }}
+                        /> /year
+                    </h4>
+                    <ProgressBar
+                        variant={(totalExpenses / (grossIncome - tax) * 100) < 100 ? null : "danger"}
+                        now={updateProgressBar(grossIncome, totalExpenses, tax)}
+                    />
                 </Card.Body>
             </Card>
         </Container>
