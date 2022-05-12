@@ -1,7 +1,6 @@
 import { Card, Container } from "react-bootstrap"
 import ExpenseList from "./expenses/ExpenseList";
 import IncomeList from "./income/IncomeList";
-// className="mb-3 p-2 shadow-sm" 
 const Cashflow = () => {
     return (
         <>
