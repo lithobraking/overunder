@@ -49,6 +49,7 @@ function App() {
 									<Dropdown.Item className="ps-4" onClick={(e) => handleMaritalStatusChange(e)}>Married - Separate</Dropdown.Item>
 								</div>
 							</Collapse>
+							<Dropdown.Divider />
 							<Dropdown.Item as="div">
 								<div className="custom-control custom-switch">
 									<input type="checkbox" className="custom-control-input" id="taxSwitch" />

@@ -1,15 +1,13 @@
 import IncomeItem from "./IncomeItem";
-import { Button, Collapse } from "react-bootstrap";
-import NewIncomeForm from "./NewIncomeForm";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateGrossIncome } from "../../state/action-creators/grossIncomeActionCreators";
 import { calculateIncomeTax, calculateIncomeTotal } from "../../utils";
+import { updateGrossIncome } from "../../state/action-creators/grossIncomeActionCreators";
 import { updateTax } from "../../state/action-creators/taxActionCreators";
 
 const IncomeList = () => {
-    const [open, setOpen] = useState(false);
     const income = useSelector((state) => state.income.incomeSources);
+    const maritalStatus = useSelector((state) => state.preferences.maritalStatus);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,7 +16,7 @@ const IncomeList = () => {
             window.localStorage.setItem("grossIncome", JSON.stringify(incomeTotal));
             dispatch(updateGrossIncome(incomeTotal));
 
-            const tax = calculateIncomeTax(incomeTotal, "single");
+            const tax = calculateIncomeTax(incomeTotal, maritalStatus);
             window.localStorage.setItem("tax", JSON.stringify(tax));
             dispatch(updateTax(tax));
         } else {
@@ -28,11 +26,11 @@ const IncomeList = () => {
             window.localStorage.setItem("tax", JSON.stringify(0));
             dispatch(updateTax(0));
         };
-    }, [income]);
+    }, [income, maritalStatus]);
 
     return (
         <>
-            <div className="text-center">
+            <div className="text-center" style={{ minHeight: "7.3rem" }}>
                 {
                     income && income.length > 0 ?
                         income.map((income) => {
@@ -46,18 +44,14 @@ const IncomeList = () => {
                                 />
                             )
                         }) :
-                        <div className="my-5" ><h6><i>No income to display.</i></h6></div>
+                        <div
+                            className="d-flex flex-grow-1 justify-content-center" style={{ height: "7.3rem" }}>
+                            <div className="align-self-center">
+                                <h6><i>No income to display.</i></h6>
+                            </div>
+                        </div>
                 }
-                <Button onClick={() => setOpen(!open)}>{open ? "Cancel" : "Add New"}</Button>
             </div>
-            <Collapse in={open}>
-                <div>
-                    <NewIncomeForm
-                        open={open}
-                        setOpen={setOpen}
-                    />
-                </div>
-            </Collapse>
         </>
     );
 };
