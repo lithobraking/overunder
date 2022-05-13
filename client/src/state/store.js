@@ -5,6 +5,7 @@ import taxReducer from "./reducers/taxReducer";
 import netIncomeReducer from "./reducers/netIncomeReducer";
 import totalExpensesReducer from "./reducers/totalExpensesReducer";
 import grossIncomeReducer from "./reducers/grossIncomeReducer";
+import preferencesReducer from "./reducers/preferencesReducer";
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         tax: taxReducer,
         totalExpenses: totalExpensesReducer,
         netIncome: netIncomeReducer,
+        preferences: preferencesReducer
     }
 });

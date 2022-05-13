@@ -4,7 +4,7 @@ import NewIncomeForm from "./NewIncomeForm";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateGrossIncome } from "../../state/action-creators/grossIncomeActionCreators";
-import { calculateIncomeTotal, calculateSingleTax } from "../../utils";
+import { calculateIncomeTax, calculateIncomeTotal } from "../../utils";
 import { updateTax } from "../../state/action-creators/taxActionCreators";
 
 const IncomeList = () => {
@@ -18,7 +18,7 @@ const IncomeList = () => {
             window.localStorage.setItem("grossIncome", JSON.stringify(incomeTotal));
             dispatch(updateGrossIncome(incomeTotal));
 
-            const tax = calculateSingleTax(incomeTotal);
+            const tax = calculateIncomeTax(incomeTotal, "single");
             window.localStorage.setItem("tax", JSON.stringify(tax));
             dispatch(updateTax(tax));
         } else {
