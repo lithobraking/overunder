@@ -1,14 +1,10 @@
 import Expense from "./Expense";
-import NewExpenseForm from "./NewExpenseForm";
-import { Button, Collapse } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTotalExpenses } from "../../state/action-creators/totalExpensesActionCreators";
 import { calculateExpenseTotal } from "../../utils";
 
 const ExpenseList = () => {
-    // const [expense, setExpense] = useState(JSON.parse(window.localStorage.getItem('expenses')));
-    const [open, setOpen] = useState(false);
     const expenses = useSelector((state) => state.expenses.expenseSources);
     const dispatch = useDispatch();
 
@@ -25,7 +21,7 @@ const ExpenseList = () => {
 
     return (
         <>
-            <div className="text-center">
+            <div className="text-center" style={{ minHeight: "7.3rem" }}>
                 {
                     expenses && expenses.length > 0 ?
                         expenses.map((expense) => {
@@ -39,18 +35,11 @@ const ExpenseList = () => {
                                 />
                             )
                         }) :
-                        <div className="my-5" ><h6><i>No expenses to display.</i></h6></div>
+                        <div className="d-flex flex-grow-1 justify-content-center" style={{ height: "7.3rem" }}>
+                            <div className="align-self-center" ><h6><i>No expenses to display.</i></h6></div>
+                        </div>
                 }
-                <Button onClick={() => setOpen(!open)}>{open ? "Cancel" : "Add New"}</Button>
             </div>
-            <Collapse in={open}>
-                <div>
-                    <NewExpenseForm
-                        open={open}
-                        setOpen={setOpen}
-                    />
-                </div>
-            </Collapse>
         </>
     );
 };
