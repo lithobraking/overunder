@@ -107,7 +107,7 @@ function App() {
 							<Dropdown.Divider />
 							<Dropdown.Item as="div">
 								<div className="custom-control custom-switch">
-									<input type="checkbox" className="custom-control-input" id="taxSwitch" onChange={(e) => handleIgnoreTaxChange(e)} />
+									<input type="checkbox" className="custom-control-input" id="taxSwitch" checked={isIgnoringTax} onChange={(e) => handleIgnoreTaxChange(e)} />
 									<label className="custom-control-label" htmlFor="taxSwitch">Disable Tax</label>
 								</div>
 							</Dropdown.Item>

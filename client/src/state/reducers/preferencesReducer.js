@@ -3,7 +3,7 @@ import { updateMaritalStatus, updateIgnoreTax, updateDarkMode } from "../action-
 
 const initialState = {
     maritalStatus: JSON.parse(window.localStorage.getItem("maritalStatus")) || "single",
-    isIgnoringTax: JSON.parse(window.localStorage.getItem("isIgnoringTax")) || false,
+    isIgnoringTax: JSON.parse(window.localStorage.getItem("ignoreTax")) || false,
     darkModeEnabled: JSON.parse(window.localStorage.getItem("darkModeEnabled")) || false,
 };
 

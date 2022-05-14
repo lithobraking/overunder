@@ -15,7 +15,7 @@ const TotalsDisplay = () => {
     const strike = isIgnoringTax ? "hidden" : null;
 
     useEffect(() => {
-        const netIncome = isIgnoringTax ? grossIncome - totalExpenses : grossIncome - totalExpenses - tax;
+        const netIncome = isIgnoringTax ? grossIncome - totalExpenses : grossIncome - (totalExpenses - tax);
         window.localStorage.setItem("netIncome", JSON.stringify(netIncome));
         dispatch(updateNetIncome(netIncome));
     });
@@ -25,6 +25,8 @@ const TotalsDisplay = () => {
             return 100;
         } else if (grossIncome === 0 && totalExpenses === 0) {
             return 0;
+        } else if (isIgnoringTax) {
+            return totalExpenses / grossIncome * 100;
         } else {
             return totalExpenses / (grossIncome - tax) * 100;
         };
@@ -49,15 +51,15 @@ const TotalsDisplay = () => {
                         preserveValue />
                     </h4>
                     <h3>Taxes</h3>
-                        <h4>
-                            { isIgnoringTax ? 
+                    <h4>
+                        {isIgnoringTax ?
                             <del className="text-muted">
                                 <CountUp end={tax} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue />
                             </del>
                             :
                             <CountUp end={tax} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue />
-                            }
-                        </h4>
+                        }
+                    </h4>
                     <h3>Total Expenses</h3>
                     <h4><CountUp end={totalExpenses} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
                     <h3>Net Income</h3>
