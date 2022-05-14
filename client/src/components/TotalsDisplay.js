@@ -10,23 +10,27 @@ const TotalsDisplay = () => {
     const tax = useSelector((state) => state.tax.tax);
     const netIncome = useSelector((state) => state.netIncome.netIncome);
     const totalExpenses = useSelector((state) => state.totalExpenses.totalExpenses);
+    const isIgnoringTax = useSelector((state) => state.preferences.isIgnoringTax);
     const dispatch = useDispatch();
+    const strike = isIgnoringTax ? "hidden" : null;
 
     useEffect(() => {
-        const netIncome = grossIncome - totalExpenses - tax;
+        const netIncome = isIgnoringTax ? grossIncome - totalExpenses : grossIncome - totalExpenses - tax;
         window.localStorage.setItem("netIncome", JSON.stringify(netIncome));
         dispatch(updateNetIncome(netIncome));
     });
 
     const updateProgressBar = (grossIncome, totalExpenses, tax) => {
-        if(grossIncome === 0 && totalExpenses > 0) {
+        if (grossIncome === 0 && totalExpenses > 0) {
             return 100;
-        } else if(grossIncome === 0 && totalExpenses === 0) {
+        } else if (grossIncome === 0 && totalExpenses === 0) {
             return 0;
         } else {
             return totalExpenses / (grossIncome - tax) * 100;
         };
     };
+
+
 
     return (
         <Container>
@@ -45,7 +49,15 @@ const TotalsDisplay = () => {
                         preserveValue />
                     </h4>
                     <h3>Taxes</h3>
-                    <h4><CountUp end={tax} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
+                        <h4>
+                            { isIgnoringTax ? 
+                            <del className="text-muted">
+                                <CountUp end={tax} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue />
+                            </del>
+                            :
+                            <CountUp end={tax} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue />
+                            }
+                        </h4>
                     <h3>Total Expenses</h3>
                     <h4><CountUp end={totalExpenses} prefix="$" suffix=" /year" separator="," decimals={2} preserveValue /></h4>
                     <h3>Net Income</h3>

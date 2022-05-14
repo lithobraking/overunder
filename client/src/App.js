@@ -7,9 +7,21 @@ import { updateMaritalStatus, updateIgnoreTax, updateDarkMode } from "./state/ac
 
 function App() {
 	const [maritalStatusOpen, showMaritalStatusOpen] = useState(false);
+	const [shadow, displayShadow] = useState(false);
 	const maritalStatus = useSelector((state) => state.preferences.maritalStatus);
 	const isIgnoringTax = useSelector((state) => state.preferences.isIgnoringTax);
 	const dispatch = useDispatch();
+
+	// note: this isn't an ideal way to do this, but it's a quick and dirty way to deal the marital status dropdown
+	// I don't feel like refactoring this to do it properly, so this is how I'm doing it for now
+	const [singleActive, setSingleActive] = useState((maritalStatus === "single"));
+	const [marriedJointActive, setMarriedJointActive] = useState((maritalStatus === "marriedJoint"));
+	const [marriedSeparateActive, setMarriedSeparateActive] = useState((maritalStatus === "marriedSeparate"));
+
+	const handleMaritalStatusSelect = () => {
+		showMaritalStatusOpen(!maritalStatusOpen);
+		displayShadow(!shadow);
+	};
 
 	const handleMaritalStatusChange = (e) => {
 		const maritalStatus = {
@@ -19,6 +31,31 @@ function App() {
 		};
 		window.localStorage.setItem("maritalStatus", JSON.stringify(maritalStatus[e.target.innerText]));
 		dispatch(updateMaritalStatus(maritalStatus[e.target.innerText]));
+
+		switch (e.target.innerText) {
+			case "Single":
+				setSingleActive(true);
+				setMarriedJointActive(false);
+				setMarriedSeparateActive(false);
+				break;
+			case "Married - Joint":
+				setSingleActive(false);
+				setMarriedJointActive(true);
+				setMarriedSeparateActive(false);
+				break;
+			case "Married - Separate":
+				setSingleActive(false);
+				setMarriedJointActive(false);
+				setMarriedSeparateActive(true);
+				break;
+			default:
+				break;
+		};
+	};
+
+	const handleIgnoreTaxChange = (e) => {
+		window.localStorage.setItem("ignoreTax", JSON.stringify(e.target.checked));
+		dispatch(updateIgnoreTax(e.target.checked));
 	};
 
 	return (
@@ -39,21 +76,39 @@ function App() {
 						</Dropdown.Toggle>
 						<Dropdown.Menu align="end">
 							<Dropdown.Header>Preferences</Dropdown.Header>
-							<Dropdown.Item onClick={() => showMaritalStatusOpen(!maritalStatusOpen)} >
+							<Dropdown.Item className={shadow ? "shadow-sm" : null} onClick={() => handleMaritalStatusSelect()} style={{zIndex: 1040}} >
 								Marital Status
 							</Dropdown.Item>
 							<Collapse in={maritalStatusOpen} >
 								<div>
-									<Dropdown.Item className="ps-4" onClick={(e) => handleMaritalStatusChange(e)}>Single</Dropdown.Item>
-									<Dropdown.Item className="ps-4" onClick={(e) => handleMaritalStatusChange(e)}>Married - Joint</Dropdown.Item>
-									<Dropdown.Item className="ps-4" onClick={(e) => handleMaritalStatusChange(e)}>Married - Separate</Dropdown.Item>
+									<Dropdown.Item
+										className="ps-4"
+										onClick={(e) => handleMaritalStatusChange(e)}
+										style={{ backgroundColor: singleActive ? "#93e9be" : "#ECF0F3" }}
+									>
+										Single
+									</Dropdown.Item>
+									<Dropdown.Item
+										className="ps-4"
+										onClick={(e) => handleMaritalStatusChange(e)}
+										style={{ backgroundColor: marriedJointActive ? "#93e9be" : "#ECF0F3" }}
+									>
+										Married - Joint
+									</Dropdown.Item>
+									<Dropdown.Item
+										className="ps-4"
+										onClick={(e) => handleMaritalStatusChange(e)}
+										style={{ backgroundColor: marriedSeparateActive ? "#93e9be" : "#ECF0F3" }}
+									>
+										Married - Separate
+									</Dropdown.Item>
 								</div>
 							</Collapse>
 							<Dropdown.Divider />
 							<Dropdown.Item as="div">
 								<div className="custom-control custom-switch">
-									<input type="checkbox" className="custom-control-input" id="taxSwitch" />
-									<label className="custom-control-label" htmlFor="taxSwitch">Ignore Taxes</label>
+									<input type="checkbox" className="custom-control-input" id="taxSwitch" onChange={(e) => handleIgnoreTaxChange(e)} />
+									<label className="custom-control-label" htmlFor="taxSwitch">Disable Tax</label>
 								</div>
 							</Dropdown.Item>
 							<Dropdown.Item as="div">
