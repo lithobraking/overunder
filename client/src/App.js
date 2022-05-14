@@ -1,6 +1,6 @@
 import TotalsDisplay from "./components/TotalsDisplay";
 import Cashflow from "./components/Cashflow";
-import { Container, Row, Col, Navbar, Button, Dropdown, Form, Collapse } from "react-bootstrap";
+import { Container, Row, Col, Navbar, Dropdown, Collapse } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateMaritalStatus, updateIgnoreTax, updateDarkMode } from "./state/action-creators/preferencesActionCreator";
@@ -76,7 +76,7 @@ function App() {
 						</Dropdown.Toggle>
 						<Dropdown.Menu align="end">
 							<Dropdown.Header>Preferences</Dropdown.Header>
-							<Dropdown.Item className={shadow ? "shadow-sm" : null} onClick={() => handleMaritalStatusSelect()} style={{zIndex: 1040}} >
+							<Dropdown.Item className={shadow ? "shadow-sm" : null} onClick={() => handleMaritalStatusSelect()} style={{ zIndex: 1040 }} >
 								Marital Status
 							</Dropdown.Item>
 							<Collapse in={maritalStatusOpen} >
