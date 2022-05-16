@@ -111,12 +111,12 @@ function App() {
 									<label className="custom-control-label" htmlFor="taxSwitch">Disable Tax</label>
 								</div>
 							</Dropdown.Item>
-							<Dropdown.Item as="div">
+							{/* <Dropdown.Item as="div">
 								<div className="custom-control custom-switch">
 									<input type="checkbox" className="custom-control-input" disabled id="darkMode" />
 									<label className="custom-control-label" htmlFor="darkMode">Dark Mode</label>
 								</div>
-							</Dropdown.Item>
+							</Dropdown.Item> */}
 						</Dropdown.Menu>
 					</Dropdown>
 				</div>
