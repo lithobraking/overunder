@@ -35,7 +35,7 @@ const TotalsDisplay = () => {
         <Container>
             <Card className="bg-primary border-light shadow-soft">
                 <Card.Body>
-                    <div className="mb-3">
+                    <div className="mb-3 text-center">
                         <h2><b>Totals</b></h2>
                     </div>
                     <h3>Gross Income</h3>
