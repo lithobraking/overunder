@@ -11,7 +11,6 @@ const frequencies = {
 const standardDeduction = {
     single: 12550,
     marriedSeparate: 12550,
-    headOfHousehold: 18800,
     marriedJoint: 25100,
 };
 
@@ -58,7 +57,7 @@ export const calculateIncomeTax = (grossIncome, filingStatus) => {
                 full: calculateBracket(0.12, 10276, 41775)
             },
             22: {
-                rate: 0,
+                rate: 0.22,
                 lowerBound: 41776,
                 upperBound: 89075,
                 full: calculateBracket(0.22, 41776, 89075)
@@ -180,7 +179,7 @@ export const calculateIncomeTax = (grossIncome, filingStatus) => {
     let status = brackets[filingStatus];
     let tax = 0;
     for (let bracket in status) {
-        if (remainder > status[bracket].upperBound) {
+        if (deductedIncome > status[bracket].upperBound) {
             remainder = remainder - (status[bracket].upperBound - status[bracket].lowerBound);
             tax = tax + status[bracket].full;
         } else {
@@ -189,11 +188,4 @@ export const calculateIncomeTax = (grossIncome, filingStatus) => {
         }
     }
     return tax;
-}
-
-
-
-
-
-// const headOfHousehold = {
-// };
+};
