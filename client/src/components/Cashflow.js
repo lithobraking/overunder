@@ -16,7 +16,7 @@ const Cashflow = () => {
                 style={{ minHeight: "17rem", }}
             >
                 <Container>
-                    <div className="mb-3">
+                    <div className="mb-3 text-center">
                         <h2><b>Income</b></h2>
                     </div>
                     <div className="d-flex flex-row justify-content-around px-3">
@@ -42,7 +42,7 @@ const Cashflow = () => {
                 style={{ minHeight: "17rem", }}
             >
                 <Container>
-                    <div className="mb-3">
+                    <div className="mb-3 text-center">
                         <h2><b>Expenses</b></h2>
                     </div>
                     <div className="d-flex flex-row justify-content-around px-3">

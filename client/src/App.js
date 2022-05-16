@@ -3,7 +3,11 @@ import Cashflow from "./components/Cashflow";
 import { Container, Row, Col, Navbar, Dropdown, Collapse } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateMaritalStatus, updateIgnoreTax, updateDarkMode } from "./state/action-creators/preferencesActionCreator";
+import {
+	updateMaritalStatus,
+	updateIgnoreTax,
+	// updateDarkMode
+} from "./state/action-creators/preferencesActionCreator";
 
 function App() {
 	const [maritalStatusOpen, showMaritalStatusOpen] = useState(false);
