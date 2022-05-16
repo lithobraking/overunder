@@ -12,10 +12,9 @@ const TotalsDisplay = () => {
     const totalExpenses = useSelector((state) => state.totalExpenses.totalExpenses);
     const isIgnoringTax = useSelector((state) => state.preferences.isIgnoringTax);
     const dispatch = useDispatch();
-    const strike = isIgnoringTax ? "hidden" : null;
 
     useEffect(() => {
-        const netIncome = isIgnoringTax ? grossIncome - totalExpenses : grossIncome - (totalExpenses - tax);
+        const netIncome = isIgnoringTax ? grossIncome - totalExpenses : grossIncome - (totalExpenses + tax);
         window.localStorage.setItem("netIncome", JSON.stringify(netIncome));
         dispatch(updateNetIncome(netIncome));
     });
@@ -31,8 +30,6 @@ const TotalsDisplay = () => {
             return totalExpenses / (grossIncome - tax) * 100;
         };
     };
-
-
 
     return (
         <Container>
