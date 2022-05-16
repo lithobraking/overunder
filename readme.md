@@ -9,3 +9,4 @@ OverUnder is a client-side React app which uses Bootstrap 5 for styling and comp
 - [ ] Add dark mode
 - [ ] Come up with a better name than "OverUnder" (current name implies something to do with gambling and was just meant to be an internal name anyway)
 - [ ] Refine mobile experience
+- [ ] Design a logo
