@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Container, ProgressBar } from "react-bootstrap";
+import { ProgressBar } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { updateNetIncome } from "../state/action-creators/netIncomeActionCreators";
