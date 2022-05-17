@@ -75,6 +75,7 @@ const Breakdown = () => {
                                 separator=","
                                 decimals={2}
                                 preserveValue
+                                style={{ color: incomeBreakdown(income).quarterly - expenseBreakdown(expenses).quarterly >= 0 ? "#262833" : "red" }}
                             />
                         }
                     </div>
@@ -111,6 +112,7 @@ const Breakdown = () => {
                                 separator=","
                                 decimals={2}
                                 preserveValue
+                                style={{ color: incomeBreakdown(income).monthly - expenseBreakdown(expenses).monthly >= 0 ? "#262833" : "red" }}
                             />
                         }
                     </div>
@@ -146,6 +148,7 @@ const Breakdown = () => {
                                 separator=","
                                 decimals={2}
                                 preserveValue
+                                style={{ color: incomeBreakdown(income).biweekly - expenseBreakdown(expenses).biweekly >= 0 ? "#262833" : "red" }}
                             />
                         }
                     </div>
@@ -182,6 +185,7 @@ const Breakdown = () => {
                                 separator=","
                                 decimals={2}
                                 preserveValue
+                                style={{ color: incomeBreakdown(income).weekly - expenseBreakdown(expenses).weekly >= 0 ? "#262833" : "red" }}
                             />
                         }
                     </div>
@@ -216,6 +220,7 @@ const Breakdown = () => {
                                 separator=","
                                 decimals={2}
                                 preserveValue
+                                style={{ color: incomeBreakdown(income).daily - expenseBreakdown(expenses).daily >= 0 ? "#262833" : "red" }}
                             />
                         }
                     </div>
