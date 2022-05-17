@@ -8,6 +8,7 @@ import {
 	updateIgnoreTax,
 	// updateDarkMode
 } from "./state/action-creators/preferencesActionCreator";
+import Footer from "./components/Footer";
 
 function App() {
 	const [maritalStatusOpen, showMaritalStatusOpen] = useState(false);
@@ -63,7 +64,7 @@ function App() {
 	};
 
 	return (
-		<>
+		<div className="vh-100">
 			<Navbar>
 				<Container className="d-flex justify-content-center">
 					<Navbar.Brand className="me-0"><h1 className="mb-0"><strong>OverUnder</strong></h1></Navbar.Brand>
@@ -125,13 +126,19 @@ function App() {
 					</Dropdown>
 				</div>
 			</Navbar>
-			<Container className="vh-100 pt-5">
+			<Container>
 				<Row>
 					<Col><Cashflow /></Col>
 					<Col><TotalsDisplay /></Col>
 				</Row>
 			</Container>
-		</>
+			<div className="position-absolute" style={{
+				bottom: "0.3rem",
+				right: "33%"
+			}}>
+				<Footer />
+			</div>
+		</div>
 	);
 }
 
