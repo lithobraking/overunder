@@ -32,8 +32,7 @@ const TotalsDisplay = () => {
     };
 
     return (
-        <Container>
-            <Card className="bg-primary border-light shadow-soft">
+            <Card className="mb-4 bg-primary border-light shadow-soft">
                 <Card.Body>
                     <div className="mb-3 text-center">
                         <h2><b>Totals</b></h2>
@@ -76,7 +75,6 @@ const TotalsDisplay = () => {
                     />
                 </Card.Body>
             </Card>
-        </Container>
     );
 }
 

@@ -8,6 +8,7 @@ import {
 	updateIgnoreTax,
 	// updateDarkMode
 } from "./state/action-creators/preferencesActionCreator";
+import Breakdown from "./components/Breakdown";
 
 function App() {
 	const [maritalStatusOpen, showMaritalStatusOpen] = useState(false);
@@ -128,7 +129,10 @@ function App() {
 			<Container className="vh-100 pt-5">
 				<Row>
 					<Col><Cashflow /></Col>
-					<Col><TotalsDisplay /></Col>
+					<Col>
+						<TotalsDisplay />
+						<Breakdown />
+					</Col>
 				</Row>
 			</Container>
 		</>
