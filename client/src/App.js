@@ -9,6 +9,7 @@ import {
 	// updateDarkMode
 } from "./state/action-creators/preferencesActionCreator";
 import Footer from "./components/Footer";
+import Breakdown from "./components/Breakdown";
 
 function App() {
 	const [maritalStatusOpen, showMaritalStatusOpen] = useState(false);
@@ -129,7 +130,10 @@ function App() {
 			<Container>
 				<Row>
 					<Col><Cashflow /></Col>
-					<Col><TotalsDisplay /></Col>
+					<Col>
+						<TotalsDisplay />
+						<Breakdown />
+					</Col>
 				</Row>
 			</Container>
 			<div className="position-absolute" style={{
