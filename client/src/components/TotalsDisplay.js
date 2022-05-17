@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Container, ProgressBar } from "react-bootstrap";
+import { ProgressBar } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { updateNetIncome } from "../state/action-creators/netIncomeActionCreators";
@@ -32,8 +32,7 @@ const TotalsDisplay = () => {
     };
 
     return (
-        <Container>
-            <Card className="bg-primary border-light shadow-soft">
+            <Card className="mb-4 bg-primary border-light shadow-soft">
                 <Card.Body>
                     <div className="mb-3 text-center">
                         <h2><b>Totals</b></h2>
@@ -76,7 +75,6 @@ const TotalsDisplay = () => {
                     />
                 </Card.Body>
             </Card>
-        </Container>
     );
 }
 
