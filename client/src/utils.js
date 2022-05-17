@@ -26,10 +26,14 @@ export const calculateIncomeTotal = (incomeList) => {
 };
 
 export const calculateExpenseTotal = (expenseList) => {
-    const costs = expenseList.map((expense) => parseFloat(expense.cost) * frequencies[expense.frequency]);
-    return costs.reduce((total, amount) => {
-        return total + amount;
-    });
+    if (expenseList.length > 0) {
+        const costs = expenseList.map((expense) => parseFloat(expense.cost) * frequencies[expense.frequency]);
+        return costs.reduce((total, amount) => {
+            return total + amount;
+        });
+    } else {
+        return 0;
+    };
 };
 
 export const calculateIncomeTax = (grossIncome, filingStatus) => {
@@ -207,16 +211,15 @@ const transactionFrequencyToYearly = (value, frequency) => {
     };
 };
 
-export const recurringTransactionTotal = (transactionList, frequency) => {
+export const recurringTransactionTotal = (transactionList, transactionType, frequency) => {
     let total = 0;
     transactionList.forEach((transaction) => {
-        const value = parseFloat(transaction.amount || transactionList.cost);
+        const value = parseFloat(transaction.amount || transaction.cost);
         if (transaction.frequency === frequency) {
             total = total + value;
         } else {
             total = total + (transactionFrequencyToYearly(value, transaction.frequency) / frequencies[frequency]);
         };
     });
-
     return total;
 };
