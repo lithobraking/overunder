@@ -136,9 +136,9 @@ function App() {
 					</Col>
 				</Row>
 			</Container>
-			<div className="position-absolute" style={{
-				bottom: "0.3rem",
-				right: "33%"
+			<div className="position-relative" style={{
+				// bottom: "0.3rem",
+				// right: "33%"
 			}}>
 				<Footer />
 			</div>
