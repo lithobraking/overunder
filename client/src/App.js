@@ -8,6 +8,7 @@ import {
 	updateIgnoreTax,
 	// updateDarkMode
 } from "./state/action-creators/preferencesActionCreator";
+import Footer from "./components/Footer";
 import Breakdown from "./components/Breakdown";
 
 function App() {
@@ -64,7 +65,7 @@ function App() {
 	};
 
 	return (
-		<>
+		<div className="vh-100">
 			<Navbar>
 				<Container className="d-flex justify-content-center">
 					<Navbar.Brand className="me-0"><h1 className="mb-0"><strong>OverUnder</strong></h1></Navbar.Brand>
@@ -126,7 +127,9 @@ function App() {
 					</Dropdown>
 				</div>
 			</Navbar>
-			<Container className="vh-100 pt-5">
+			<Container style={{
+				minHeight: "calc(100vh - 41.6px)",
+			}}>
 				<Row>
 					<Col><Cashflow /></Col>
 					<Col>
@@ -135,7 +138,10 @@ function App() {
 					</Col>
 				</Row>
 			</Container>
-		</>
+			<div className="position-relative">
+				<Footer />
+			</div>
+		</div>
 	);
 }
 
