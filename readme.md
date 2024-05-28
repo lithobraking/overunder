@@ -7,7 +7,7 @@ Rundown is a client-side React app which uses Bootstrap 5 for styling and compon
 
 **To-Do:**
 - [ ] Add dark mode
-- [ ] Come up with a better name than "OverUnder" (current name implies something to do with gambling and was just meant to be an internal name anyway)
+- [x] Come up with a better name than "OverUnder"
 - [ ] Improve mobile experience
 - [ ] Design a logo
 - [ ] Migrate UI from Bootstrap to Chakra
